@@ -22,6 +22,7 @@ def find_aws_ip(aws_ip_range_data, ip_to_find):
     for prefix in aws_ip_range_data:
         network = ipaddress.ip_network(prefix['ip_prefix'])
         if ipaddress.ip_address(ip_to_find) in network:
+            prefix['first_ip'] = str(network.network_address)
             prefix['last_ip'] = str(network.broadcast_address)
             results.append(prefix)
     return results
