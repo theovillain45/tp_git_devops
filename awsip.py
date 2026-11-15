@@ -24,6 +24,18 @@ def get_number_of_ips(ip_prefix):
     network = ipaddress.ip_network(ip_prefix)
     return network.num_addresses
 
-sys.stdout.write(json.dumps(find_aws_ip(download_aws_ip_set(), sys.argv[1]),indent=2))
-print("\n")
-sys.stdout.write(json.dumps(get_number_of_ips( sys.argv[2]),indent=2))
+
+print("bienvenu dans le menue des adresses IP AWS")
+print("voulez vous aller rechercher une adresse ; taper 1")
+print("vous voulez connaitre le nombre d'adresse d'un reseau : taper 2\n")
+val = input()
+if(val == "1") : 
+    print("donner l'adresse ip :\n")
+    val1 = input()
+    sys.stdout.write(json.dumps(find_aws_ip(download_aws_ip_set(), val1),indent=2))
+elif (val == "2"):
+    print("donner l'adresse reseau :\n")
+    val2 = input()
+    sys.stdout.write(json.dumps(get_number_of_ips( val2),indent=2))
+else:
+    print("fin du programme")
