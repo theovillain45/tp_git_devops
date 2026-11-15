@@ -20,4 +20,10 @@ def find_aws_ip(aws_ip_range_data, ip_to_find):
   """Finds the AWS IP range that contains the given IP address."""
   return [prefix for prefix in aws_ip_range_data if ipaddress.ip_address(ip_to_find) in ipaddress.ip_network(prefix['ip_prefix'])]
 
+def get_number_of_ips(ip_prefix):
+    network = ipaddress.ip_network(ip_prefix)
+    return network.num_addresses
+
 sys.stdout.write(json.dumps(find_aws_ip(download_aws_ip_set(), sys.argv[1]),indent=2))
+print("\n")
+sys.stdout.write(json.dumps(get_number_of_ips( sys.argv[2]),indent=2))
